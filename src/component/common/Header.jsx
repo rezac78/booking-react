@@ -276,7 +276,9 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
+                    <NavLink to="/register">
                     <input className="ml-3 mr-5 d-none d-lg-block" type="submit" value="Sign up" />
+                    </NavLink>
                 </div>
             </div>
             <div className="modal" id="mymodal">

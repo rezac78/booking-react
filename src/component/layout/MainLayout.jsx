@@ -1,21 +1,25 @@
 import React, { Fragment } from 'react';
+import {withRouter} from "react-router-dom"
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import Main from '../Main/Main';
-import { Switch } from 'react-router-dom';
-import { Route } from 'react-router-dom';
+import { Switch,Route } from 'react-router-dom';
 import Login from './../Login/Login';
-const MainLayout = () => {
+import Register from './../Register/Register';
+
+const MainLayout = props => {
+    const {pathname} = props.location;
     return (
         <Fragment>
             <Header />
             <Switch>
                 <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
                 <Route path="/" exact component={Main} />
             </Switch>
-            <Footer />
+            {pathname==="/"?<Footer/>:null}
         </Fragment>
     );
 }
 
-export default MainLayout;
+export default withRouter(MainLayout);
