@@ -1,12 +1,10 @@
 import React from 'react';
 import { Switch, Route } from "react-router-dom"
 import MainLayout from './../layout/MainLayout';
-import Login from './Login/Login';
-import Main from './Main/Main';
+import Main from './../component/Main/Main';
+import Login from './../component/Login/Login';
 
-
-
-const App = () => {
+const Booking = () => {
     return (
         <MainLayout>
             <Switch>
@@ -17,4 +15,4 @@ const App = () => {
     )
 }
 
-export default App;
+export default Booking;
