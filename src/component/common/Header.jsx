@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {NavLink} from "react-router-dom";
 const Header = () => {
     return (
         <nav>
@@ -258,7 +258,8 @@ const Header = () => {
                     </div>
                     <div className="mt-2 ml-3 d-flex dropdown">
                         <i className="fas fa-user mt-1 mr-1"></i>
-                        <span className="d-none d-md-block" data-toggle="dropdown">Log in</span>
+                        {/* <span className="d-none d-md-block" data-toggle="dropdown">Log in</span> */}
+                        <NavLink to="/login" activeStyle={{color:"silver"}} style={{color:"black"}} className="d-none d-md-block text-decoration-none" >Log in</NavLink>
                         <i className="fas fa-sort-down ml-1 mt-1"></i>
                         <div className="dropdown-menu mr-4">
                             <div className="dropdown-item">
