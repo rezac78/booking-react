@@ -276,7 +276,7 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-                    <NavLink to="/register">
+                    <NavLink activeStyle={{color:"silver"}} to="/register">
                     <input className="ml-3 mr-5 d-none d-lg-block" type="submit" value="Sign up" />
                     </NavLink>
                 </div>
