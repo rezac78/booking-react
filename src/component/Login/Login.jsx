@@ -1,18 +1,24 @@
-import React from 'react';
+import React,{useState} from 'react';
 
 const Login = () => {
+    const [email,setEmail]=useState("")
+    const [password,setPassword]=useState("")
+
+    const handleSubmit=event=>{
+        event.preventDefault();
+    }
     return (
         <main className="form-signin">
-            <form action="/users/login" method="POST">
+            <form onSubmit={handleSubmit}>
                 <h1 className="h3 mb-3 fw-normal text-center">Please login</h1>
 
                 <div className="form-floating">
                     <label for="floatingInput">Email address</label>
-                    <input name="email" type="email" className="form-control" id="floatingInput" placeholder="name@example.com" />
+                    <input name="email" type="email" className="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e)=>setEmail(e.target.value)} />
                 </div>
                 <div className="form-floating">
                     <label for="floatingPassword">Password</label>
-                    <input name="password" type="password" className="form-control" id="floatingPassword" placeholder="Password" />
+                    <input name="password" type="password" className="form-control" id="floatingPassword" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                 </div>
 
                 <div className="checkbox mb-3">

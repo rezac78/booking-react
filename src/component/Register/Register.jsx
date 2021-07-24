@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { registerUser } from './../../services/userServices';
+
 
 const Register = () => {
     const [fullname, setFullname] = useState("");
@@ -10,7 +14,7 @@ const Register = () => {
         setFullname("");
         setPassword("");
     }
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault();
 
         const user = {
@@ -18,8 +22,22 @@ const Register = () => {
             email,
             password
         }
+        try {
+            const { status } = await registerUser(user)
+            if (status === 201) {
+                toast.success("کاربر با موفقیت ساخته شد", { position: "top-right", closeOnClick: true })
+                reset();
+            }
+        } catch (err) {
+            toast.error("مشکلی پیش اومده", { position: "top-right", closeOnClick: true })
+            console.log(err)
+        }
+
+
+
+
+
         console.log(user);
-        reset();
     }
     return (
         <main className="form-signin">
@@ -48,7 +66,7 @@ const Register = () => {
                 <div className="form-group">
                     <div className="g-recaptcha" data-sitekey="6Ld8NV0bAAAAAG6of_pki3Rc288CIp7Gl1rAYBYg"></div>
                 </div>
-                <button className="w-100 btn btn-lg btn-primary" type="submit">login</button>
+                <button className="w-100 btn btn-lg btn-primary" type="submit">Register</button>
             </form>
         </main>
     )
