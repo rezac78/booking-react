@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { loginUser } from '../../services/userServices';
+import { Sugar } from 'react-preloaders';
 import SimpleReactValidator from 'simple-react-validator';
 import { withRouter } from "react-router-dom";
 import { toast } from 'react-toastify';
@@ -7,6 +8,7 @@ import { toast } from 'react-toastify';
 const Login = ({ history }) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const [loading, setLoading] = useState(false)
     const [, forceUpdate] = useState();
 
     const validaton = useRef(new SimpleReactValidator({
@@ -32,6 +34,7 @@ const Login = ({ history }) => {
         }
         try {
             if (validaton.current.allValid()) {
+                setLoading(true);
                 const { status, data } = await loginUser(user)
                 if (status === 201) {
                     toast.success("ورود با موفقیت ساخته شد", { position: "top-right", closeOnClick: true })
@@ -41,10 +44,12 @@ const Login = ({ history }) => {
                 }
             } else {
                 validaton.current.showMessage();
+                setLoading(false);
                 forceUpdate(1);
             }
 
         } catch (err) {
+            setLoading(false);
             toast.error("مشکلی پیش اومده", { position: "top-right", closeOnClick: true })
             console.log(err)
         }
@@ -53,7 +58,9 @@ const Login = ({ history }) => {
         <main className="form-signin">
             <form onSubmit={handleSubmit}>
                 <h1 className="h3 mb-3 fw-normal text-center">Please login</h1>
-
+                {loading ? (
+                    <Sugar time={0} color="#fc03d7" customLoading={loading} />
+                ) : null}
                 <div className="form-floating">
                     <label for="floatingInput">Email address</label>
                     <input name="email" type="email" className="form-control" id="floatingInput" placeholder="name@example.com" value={email} onChange={(e) => {
