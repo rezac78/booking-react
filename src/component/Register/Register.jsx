@@ -4,6 +4,8 @@ import { Sugar } from 'react-preloaders';
 import { withRouter } from "react-router-dom";
 import SimpleReactValidator from 'simple-react-validator';
 import { registerUser } from './../../services/userServices';
+import {Helmet} from "react-helmet";
+
 
 
 const Register = ({history}) => {
@@ -59,6 +61,9 @@ const Register = ({history}) => {
     }
     return (
         <main className="form-signin">
+            <Helmet>
+                <title>Register</title>
+            </Helmet>
             <form onSubmit={handleSubmit}>
                 <h1 className="h3 mb-3 fw-normal text-center">Please Register</h1>
                 {loading ? (

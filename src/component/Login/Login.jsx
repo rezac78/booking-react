@@ -4,6 +4,7 @@ import { Sugar } from 'react-preloaders';
 import SimpleReactValidator from 'simple-react-validator';
 import { withRouter } from "react-router-dom";
 import { toast } from 'react-toastify';
+import {Helmet} from "react-helmet";
 
 const Login = ({ history }) => {
     const [email, setEmail] = useState("")
@@ -56,6 +57,9 @@ const Login = ({ history }) => {
     }
     return (
         <main className="form-signin">
+            <Helmet>
+                <title>Login</title>
+            </Helmet>
             <form onSubmit={handleSubmit}>
                 <h1 className="h3 mb-3 fw-normal text-center">Please login</h1>
                 {loading ? (
